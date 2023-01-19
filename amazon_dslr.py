@@ -8,19 +8,7 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 url = 'https://www.amazon.in/s?k=dslr+camera'
 
 s = HTMLSession()
-l_pro_title=[]
-# l_pro_price=[]
-# l_pro_brand=[] 
-# l_pro_model=[]
-# l_pro_form_factor=[] 
-# l_pro_resolutaion=[]
-
-# def getdata(url):
-#     r = s.get(url)
-#     soup = BeautifulSoup(r.text,'html.parser')
-#     return soup
-
-
+amazon_data=[]
 
 for i in range(3,15):
     print('page is extracting = ',i)
@@ -58,14 +46,6 @@ for i in range(3,15):
         except:
             pro_resolutaion='None'
 
-
-        # l_pro_title.append(pro_title)
-        # l_pro_price.append(pro_price)
-        # l_pro_brand.append(pro_brand)
-        # l_pro_model.append(pro_model)
-        # l_pro_form_factor.append(pro_form_factor)
-        # l_pro_resolutaion.append(pro_resolutaion)
-
         items_m = {
             'Title':pro_title,
             'Price':pro_price,
@@ -74,13 +54,8 @@ for i in range(3,15):
             'Form Factor':pro_form_factor,
             'Resolution':pro_resolutaion,
         }
-        l_pro_title.append(items_m)
+        amazon_data.append(items_m)
         
-with open('Fairprice_data_5.csv','a') as f:
-    df = pd.DataFrame(l_pro_title)
+with open('amazon_extract_data.csv','a') as f:
+    df = pd.DataFrame(amazon_data)
     df.to_csv('Fair_price_data_5.csv')
-
-# df = pd.DataFrame()
-
-    
-# data = getdata(url)
